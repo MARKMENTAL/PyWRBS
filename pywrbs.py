@@ -46,7 +46,7 @@ while i <= matches:
 		team1 = input("Enter the name of the first team:")
 		team2 = input("Enter the name of the second team:")
 		t1ov = int(input("Enter a number representing team 1's overness on a scale of 100:"))
-		t2ov = int(input("Enter a number representing team 1's overness on a scale of 100:"))
+		t2ov = int(input("Enter a number representing team 2's overness on a scale of 100:"))
 		titleop = input("If this is a title match enter the title's name, if not type a lowercase n: ")
 		winner = int(input("Choose a winner for the match:\n1:" +team1 + "\n2:" +team2+"\n"))
 		if winner == 1:
@@ -80,4 +80,3 @@ for rating in ratings:
 
 finalrating = int(finalrating / matches)
 print("The final rating for " +fed +" " +eventna + " is: " +str(finalrating))	
-
