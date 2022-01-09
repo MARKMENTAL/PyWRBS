@@ -22,9 +22,9 @@ def promos(w1, w2):
     elif rnd == 2:
         matchre = w1 + " attacked " + w2 + " backstage!\n"
     elif rnd == 3:
-        matchre = w1 +" attacked " + w2 + " during their promo!"
+        matchre = w1 +" attacked " + w2 + " during their promo!\n"
     elif rnd == 4:
-        matchre = "The locker room had to come to the ring to break up a brawl after " +w1 + " beat down " +w2 +"!"
+        matchre = "The locker room had to come to the ring to break up a brawl after " +w1 + " beat down " +w2 +"!\n"
 
     return matchre
 
