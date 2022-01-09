@@ -37,7 +37,6 @@ i = 1
 results = []
 ratings = []
 finalrating = 0
-titlebonus = 0
 
 while i <= matches:
     print ("\nSegment " +str(i) +" of " +fed +" " +eventna);
@@ -58,12 +57,10 @@ while i <= matches:
             matchre = wrestler1 + " defeated " + wrestler2 + " in a match by pinfall.\n"
             if titleop !="n":
                 matchre+= "The match was for the " + titleop +".\n"
-                titlebonus = 10
         elif winner == 2:
             matchre = wrestler2 + " defeated " + wrestler1 + " in a match by pinfall.\n"
             if titleop !="n":
                 matchre+= "The match was for the " + titleop +".\n"
-                titlebonus = 10    
         matchra = determinerating(w1ov,w2ov)
         matchre += "\nMatch Rating: " + str(matchra)
         results.append(matchre)
@@ -83,12 +80,10 @@ while i <= matches:
             matchre = team1 + " defeated " + team2 + " in a match by pinfall.\n"
             if titleop !="n":
                 matchre+= "The match was for the " + titleop +".\n"
-                titlebonus = 10
         elif winner == 2:
             matchre = team2 + " defeated " + team1 + " in a match by pinfall.\n"
             if titleop !="n":
                 matchre+= "The match was for the " + titleop +".\n"
-                titlebonus = 10
         matchra = determinerating(t1ov,t2ov)
         matchre += "\nMatch Rating: " + str(matchra)
         results.append(matchre)
@@ -97,8 +92,8 @@ while i <= matches:
 
     elif matchty == 3:
         print("Promo/Interview Segment")
-        wrestler1 = input("Enter the name of the first wrestler or team, they will be on the attacking side of this promo: ")
-        wrestler2 = input("Enter the name of the second wrestler or team, they will be on the defending side of this promo: ")
+        wrestler1 = input("Enter the name of the first wrestler or team: ")
+        wrestler2 = input("Enter the name of the second wrestler or team: ")
         w1ov = int(input("Choose an option to represent " +wrestler1 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
         w2ov = int(input("Choose an option to represent " +wrestler2 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
         w1ov = overnesseval(w1ov)
