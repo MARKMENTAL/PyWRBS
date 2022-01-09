@@ -1,5 +1,33 @@
 import random
 
+def overnesseval(over):
+    if over == 1:
+         over = random.randint(83,95)
+    elif over == 2:
+         over = random.randint(65,80)
+    elif over == 3:
+         over = random.randint(40,60)
+    return over
+
+def determinerating(w1ov,w2ov):
+    matchra = w1ov + w2ov - random.randint(85, 110)
+    matchra += random.randint(8,17) 
+    return matchra
+
+def promos(w1, w2):
+    rnd = random.randint(1,4)
+    
+    if rnd == 1:
+        matchre = w1 + " insulted and intimidated " + w2 + " to hype up their next match.\n"
+    elif rnd == 2:
+        matchre = w1 + " attacked " + w2 + " backstage!\n"
+    elif rnd == 3:
+        matchre = w1 +" attacked " + w2 + " during their promo!"
+    elif rnd == 4:
+        matchre = "The locker room had to come to the ring to break up a brawl after " +w1 + " beat down " +w2 +"!"
+
+    return matchre
+
 print("Welcome to PyWRBS the free wrestling event booking simulator")
 matches = int(input("Enter the amount of matches/segments in the event: "))
 fed = input("Enter the name or abbv. of the wrestling federation hosting the event: ")
@@ -20,8 +48,10 @@ while i <= matches:
         print("1v1 Singles Match")
         wrestler1 = input("Enter the name of the first wrestler: ")
         wrestler2 = input("Enter the name of the second wrestler: ")
-        w1ov = int(input("Enter a number representing " +wrestler1 +"'s overness on a scale of 100: "))
-        w2ov = int(input("Enter a number representing " +wrestler2 +"'s overness on a scale of 100: "))
+        w1ov = int(input("Choose an option to represent " +wrestler1 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
+        w2ov = int(input("Choose an option to represent " +wrestler2 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
+        w1ov = overnesseval(w1ov)
+        w2ov = overnesseval(w2ov)
         titleop = input("If this is a title match enter the title's name, if not type a lowercase n: ")
         winner = int(input("Choose a winner for the match:\n1:" +wrestler1+ "\n2:" +wrestler2+"\n"))
         if winner == 1:
@@ -34,9 +64,7 @@ while i <= matches:
             if titleop !="n":
                 matchre+= "The match was for the " + titleop +".\n"
                 titlebonus = 10    
-        matchra = w1ov + w2ov - random.randint(85, 110)
-        matchra += random.randint(8,17) 
-        matchra += titlebonus
+        matchra = determinerating(w1ov,w2ov)
         matchre += "\nMatch Rating: " + str(matchra)
         results.append(matchre)
         ratings.append(matchra)        
@@ -45,8 +73,10 @@ while i <= matches:
         print("2v2 Tag Team Match")
         team1 = input("Enter the name of the first team: ")
         team2 = input("Enter the name of the second team: ")
-        t1ov = int(input("Enter a number representing " +team1 +"'s overness on a scale of 100: "))
-        t2ov = int(input("Enter a number representing " +team2 +"'s overness on a scale of 100: "))
+        t1ov = int(input("Choose an option to represent " +team1 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
+        t2ov = int(input("Choose an option to represent " +team2 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
+        t1ov = overnesseval(t1ov)
+        t2ov = overnesseval(t2ov)
         titleop = input("If this is a title match enter the title's name, if not type a lowercase n: ")
         winner = int(input("Choose a winner for the match:\n1:" +team1 + "\n2:" +team2+"\n"))
         if winner == 1:
@@ -59,9 +89,7 @@ while i <= matches:
             if titleop !="n":
                 matchre+= "The match was for the " + titleop +".\n"
                 titlebonus = 10
-        matchra = t1ov + t2ov - random.randint(85, 110)
-        matchra += random.randint(8 ,17) 
-        matchra += titlebonus
+        matchra = determinerating(t1ov,t2ov)
         matchre += "\nMatch Rating: " + str(matchra)
         results.append(matchre)
         ratings.append(matchra)
@@ -71,15 +99,16 @@ while i <= matches:
         print("Promo/Interview Segment")
         wrestler1 = input("Enter the name of the first wrestler or team, they will be on the attacking side of this promo: ")
         wrestler2 = input("Enter the name of the second wrestler or team, they will be on the defending side of this promo: ")
-        w1ov = int(input("Enter a number representing " +wrestler1 +"'s microphone skills on a scale of 100: "))
-        w2ov = int(input("Enter a number representing " +wrestler2 +"'s microphone skills on a scale of 100: "))
+        w1ov = int(input("Choose an option to represent " +wrestler1 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
+        w2ov = int(input("Choose an option to represent " +wrestler2 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
+        w1ov = overnesseval(w1ov)
+        w2ov = overnesseval(w2ov)
         winner = int(input("Choose a winner for the promo:\n1:" +wrestler1+ "\n2:" +wrestler2+"\n"))
         if winner == 1:
-            matchre = wrestler1 + " insulted and intimidated " + wrestler2 + " to hype up their next match.\n"
+            matchre = promos(wrestler1,wrestler2)
         elif winner == 2:
-            matchre = wrestler2 + " came out to ambush and attack " + wrestler1 + ", ruining their promo.\n"
-        matchra = w1ov + w2ov - random.randint(85, 110)
-        matchra += random.randint(8,17) 
+            matchre = promos(wrestler2,wrestler1)
+        matchra = determinerating(w1ov,w2ov)
         matchre += "\nSegment Rating: " + str(matchra)
         results.append(matchre)
         ratings.append(matchra)
