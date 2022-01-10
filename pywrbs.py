@@ -28,6 +28,29 @@ def promos(w1, w2):
 
     return matchre
 
+def ratingtograde(matchra):
+    grade = ""
+    if matchra < 60:
+        grade = "F"
+    elif matchra >= 60 and matchra < 68:
+        grade = "D"
+    elif matchra == 68 or matchra == 69:
+        grade = "D+"
+    elif matchra >= 70 and matchra < 78:
+        grade = "C"
+    elif matchra == 78 or matchra == 79:
+        grade = "C+"
+    elif matchra >= 80 and matchra < 88:
+        grade = "B"
+    elif matchra == 88 or matchra == 89:
+        grade = "B+"
+    elif matchra >= 90 and matchra < 98:
+        grade = "A"
+    elif matchra >= 98:
+        grade = "A+"
+
+    return grade
+
 print("Welcome to PyWRBS the free wrestling event booking simulator")
 matches = int(input("Enter the amount of matches/segments in the event: "))
 fed = input("Enter the name or abbv. of the wrestling federation hosting the event: ")
@@ -62,7 +85,8 @@ while i <= matches:
             if titleop !="n":
                 matchre+= "The match was for the " + titleop +".\n"
         matchra = determinerating(w1ov,w2ov)
-        matchre += "\nMatch Rating: " + str(matchra)
+        segmentgrade = ratingtograde(matchra)
+        matchre += "\nSegment Rating: " + segmentgrade
         results.append(matchre)
         ratings.append(matchra)        
         print(matchre)        
@@ -85,7 +109,8 @@ while i <= matches:
             if titleop !="n":
                 matchre+= "The match was for the " + titleop +".\n"
         matchra = determinerating(t1ov,t2ov)
-        matchre += "\nMatch Rating: " + str(matchra)
+        segmentgrade = ratingtograde(matchra)
+        matchre += "\nSegment Rating: " + segmentgrade
         results.append(matchre)
         ratings.append(matchra)
         print(matchre)
@@ -104,7 +129,8 @@ while i <= matches:
         elif winner == 2:
             matchre = promos(wrestler2,wrestler1)
         matchra = determinerating(w1ov,w2ov)
-        matchre += "\nSegment Rating: " + str(matchra)
+        segmentgrade = ratingtograde(matchra)
+        matchre += "\nSegment Rating: " + segmentgrade
         results.append(matchre)
         ratings.append(matchra)
         print(matchre)
@@ -120,4 +146,5 @@ for rating in ratings:
     finalrating+=rating
 
 finalrating = int(finalrating / matches)
-print("The final rating for " +fed +" " +eventna + " is: " +str(finalrating))    
+finalgrade = ratingtograde(finalrating)
+print("The final rating for " +fed +" " +eventna + " is: " +finalgrade)
