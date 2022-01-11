@@ -43,6 +43,31 @@ class CSWRBS {
         return matchre;
 
     }
+
+    static string RatingToGrade(int matchra) {
+        string grade = "";
+        if (matchra < 60) {
+            grade = "F";
+        } else if (matchra >= 60 && matchra < 68) {
+            grade = "D";
+        } else if (matchra == 68 || matchra == 69) {
+            grade = "D+";
+        } else if (matchra >= 70 && matchra < 78) {
+            grade = "C";
+        } else if (matchra == 78 || matchra == 79) {
+            grade = "C+";
+        } else if (matchra >= 80 && matchra < 88) {
+            grade = "B";
+        } else if (matchra == 88 || matchra == 89) {
+            grade = "B+";
+        } else if (matchra >= 90 && matchra < 98) {
+            grade = "A";
+        } else if (matchra >= 98) {
+            grade = "A+";
+        }
+        return grade;
+    }
+
     static void BookEvent(int matches, string fed, string eventna) {
         int i = 1;
         int j = 0;
@@ -56,13 +81,15 @@ class CSWRBS {
         winner = 0;
         string[] results = new string[matches];
         int[] ratings = new int[matches];
-        string matchre, titleop, team1, team2, wrestler1, wrestler2;
+        string matchre, titleop, team1, team2, wrestler1, wrestler2, segmentgrade, finalgrade;
         matchre = "";
         titleop = "";
         team1 = "";
         team2 = "";
         wrestler1 = "";
         wrestler2 = "";
+        segmentgrade = "";
+        finalgrade = "";
         while (i <= matches) {
             Console.WriteLine("Segment " + i + " of " + fed + " " + eventna);
             Console.WriteLine("Choose a match/segment type\n1:1v1 Match\n2:2v2 Match\n3:Promo Segment");
@@ -100,7 +127,8 @@ class CSWRBS {
                 }
 
                 matchra = DetermineRating(w1ov, w2ov);
-                matchre += "\nMatch Rating: " + matchra;
+                segmentgrade = RatingToGrade(matchra);
+                matchre += "\nSegment Rating: " + segmentgrade;
                 results[j] = matchre;
                 ratings[j] = matchra;
                 Console.WriteLine(matchre + "\n");
@@ -137,7 +165,8 @@ class CSWRBS {
                 }
 
                 matchra = DetermineRating(t1ov, t2ov);
-                matchre += "\nMatch Rating: " + matchra;
+                segmentgrade = RatingToGrade(matchra);
+                matchre += "\nSegment Rating: " + segmentgrade;
                 results[j] = matchre;
                 ratings[j] = matchra;
                 Console.WriteLine(matchre + "\n");
@@ -166,7 +195,8 @@ class CSWRBS {
                 }
 
                 matchra = DetermineRating(w1ov, w2ov);
-                matchre += "\nSegment Rating: " + matchra;
+                segmentgrade = RatingToGrade(matchra);
+                matchre += "\nSegment Rating: " + segmentgrade;
                 results[j] = matchre;
                 ratings[j] = matchra;
                 Console.WriteLine(matchre + "\n");
@@ -189,7 +219,8 @@ class CSWRBS {
         }
 
         finalrating = finalrating / Convert.ToInt32(matches);
-        Console.WriteLine("The final rating for " + fed + " " + eventna + " is: " + finalrating);
+        finalgrade = RatingToGrade(finalrating);
+        Console.WriteLine("The final rating for " + fed + " " + eventna + " is: " + finalgrade);
     }
 
     public static void Main() {
