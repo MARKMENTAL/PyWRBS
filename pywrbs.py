@@ -21,7 +21,7 @@ def determinerating(w1ov,w2ov):
     return matchra
 
 def promos(w1, w2):
-    rnd = random.randint(1,4)
+    rnd = int(input("Choose a promo\n1:In-Ring Promo\n2:Backstage Attack\n3:Promo Attack\n4:Impromptu Brawl\n5:Custom Promo\n"))
     
     if rnd == 1:
         matchre = w1 + " insulted and intimidated " + w2 + " to hype up their next match.\n"
@@ -31,7 +31,8 @@ def promos(w1, w2):
         matchre = w1 +" attacked " + w2 + " during their promo!\n"
     elif rnd == 4:
         matchre = "The locker room had to come to the ring to break up a brawl after " +w1 + " beat down " +w2 +"!\n"
-
+    elif rnd == 5:
+        matchre = input("Custom promo! Type up a custom promo for " +w1 + " and " +w2 +":\n")
     return matchre
 
 def ratingtograde(matchra):
