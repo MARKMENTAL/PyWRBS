@@ -1,30 +1,41 @@
-import os
-status = 1
+import os 
+status = 0
 print("Launched by pylaunch")
-status = int(input("1.Python Version\n2.Python3 Version\n3.C# Version\n"))
+try:
+    status = int(input("1.Python Version\n2.Python3 Version(Suggested for Ubuntu)\n"))
+except ValueError:
+    print("An error occurred, invalid input.\nlauncher shutting down...")
 while status != 0:
     if status == 1:
         os.system("python pywrbs.py")
-        status = int(input("Press 0 to exit or 1 to keep playing:"))
-        if status != 1:
+        try:
+            status = int(input("Press 0 to exit or 1 to keep playing:\n"))
+            if status == 1:
+                status = 1
+            else:
+                print("launcher shutting down...")
+        except ValueError:
+            print("An error occurred, invalid input...\nlauncher shutting down...")
+            status = 0
+        except KeyboardInterrupt:
+            print("launcher shutting down...")
             status = 0
 
     elif status == 2:
         os.system("python3 pywrbs.py")
-        status = int(input("Press 0 to exit or 1 to keep playing:"))
-        if status != 1:
+        try:
+            status = int(input("Press 0 to exit or 1 to keep playing:\n"))
+            if status == 1:
+                status = 2
+            else:
+                print("launcher shutting down...")
+        except ValueError:
+            print("An error occurred, invalid input...\nlauncher shutting down...")
             status = 0
-        elif status == 1:
-            status = 2
-
-    elif status == 3:
-        os.system("mono cswrbs.exe")
-        status = int(input("Press 0 to exit or 1 to keep playing:"))
-        if status != 1:
+        except KeyboardInterrupt:
+            print("\nlauncher shutting down...")
             status = 0
-        elif status == 1:
-            status = 3
 
     else:
-        status = 0
-        print("Exiting...")
+         status = 0
+         print("launcher shutting down...")
