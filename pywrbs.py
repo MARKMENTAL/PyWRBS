@@ -28,14 +28,17 @@ def tvratings(eventna,fed):
         viewers = random.randint(300000, 1800000)
         print("\nYouTube Viewers: "+f'{viewers:,}')
 
-def overnesseval(over, wrestler):
+def overnesseval(over, wrestler,matchty):
     if over == 1:
         over = random.randint(80,87)
     elif over == 2:
         over = random.randint(65,78)
     elif over == 3:
         over = random.randint(60,70)
-    skillbonus = int(input("Choose an option to represent " +wrestler +"'s technical wrestling skill:\n1:Technical Expert\n2:Solid Ring Worker\n3:Garbage\n"))
+    if matchty == 1 or matchty == 2:
+        skillbonus = int(input("Choose an option to represent " +wrestler +"'s technical wrestling skill:\n1:Technical Expert\n2:Solid Ring Worker\n3:Garbage\n"))
+    elif matchty == 3:
+        skillbonus = int(input("Choose an option to represent " +wrestler +"'s microphone/acting skill:\n1:Charismatic Expert\n2:Solid Actor\n3:Garbage on the mic\n"))
     if skillbonus == 1:
         over+=random.randint(5,10)
     elif skillbonus == 2:
@@ -124,8 +127,8 @@ try:
             wrestler2 = input("Enter the name of the second wrestler: ")
             w1ov = int(input("Choose an option to represent " +wrestler1 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
             w2ov = int(input("Choose an option to represent " +wrestler2 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
-            w1ov = overnesseval(w1ov,wrestler1)
-            w2ov = overnesseval(w2ov,wrestler2)
+            w1ov = overnesseval(w1ov,wrestler1,matchty)
+            w2ov = overnesseval(w2ov,wrestler2,matchty)
             titleop = input("If this is a title match enter the title's name, if not type a lowercase n: ")
             winner = int(input("Choose a winner for the match:\n1:" +wrestler1+ "\n2:" +wrestler2+"\n3:No Contest/DQ\n"))
             if winner == 1:
@@ -153,8 +156,8 @@ try:
             team2 = input("Enter the name of the second team: ")
             t1ov = int(input("Choose an option to represent " +team1 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
             t2ov = int(input("Choose an option to represent " +team2 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
-            t1ov = overnesseval(t1ov,team1)
-            t2ov = overnesseval(t2ov,team2)
+            t1ov = overnesseval(t1ov,team1,matchty)
+            t2ov = overnesseval(t2ov,team2,matchty)
             titleop = input("If this is a title match enter the title's name, if not type a lowercase n: ")
             winner = int(input("Choose a winner for the match:\n1:" +team1 + "\n2:" +team2+"\n3:No Contest/DQ\n"))
             if winner == 1:
@@ -182,8 +185,8 @@ try:
             wrestler2 = input("Enter the name of the second wrestler or team: ")
             w1ov = int(input("Choose an option to represent " +wrestler1 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
             w2ov = int(input("Choose an option to represent " +wrestler2 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
-            w1ov = overnesseval(w1ov,wrestler1)
-            w2ov = overnesseval(w2ov,wrestler2)
+            w1ov = overnesseval(w1ov,wrestler1,matchty)
+            w2ov = overnesseval(w2ov,wrestler2,matchty)
             matchre = promos(wrestler1,wrestler2)
             matchra = determinerating(w1ov,w2ov)
             segmentgrade = ratingtograde(matchra)
