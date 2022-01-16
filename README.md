@@ -12,6 +12,7 @@ It is best used on Linux or with WSL.
 - Specify the overness (popularity) and technical wrestling skill of wrestlers
 - Letter graded matches/segments according to wrestler overness and skill
 - Promo Segments/Interviews
+- No contests and disqualification finishes
 - Supports booking Tag Team and 1 on 1 matches as of right now
 
 # Screenshot of Latest Version

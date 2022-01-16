@@ -127,7 +127,7 @@ try:
             w1ov = overnesseval(w1ov,wrestler1)
             w2ov = overnesseval(w2ov,wrestler2)
             titleop = input("If this is a title match enter the title's name, if not type a lowercase n: ")
-            winner = int(input("Choose a winner for the match:\n1:" +wrestler1+ "\n2:" +wrestler2+"\n"))
+            winner = int(input("Choose a winner for the match:\n1:" +wrestler1+ "\n2:" +wrestler2+"\n3:No Contest/DQ\n"))
             if winner == 1:
               matchre = wrestler1 + " defeated " + wrestler2 + " in a match by pinfall.\n"
               if titleop !="n":
@@ -136,6 +136,8 @@ try:
               matchre = wrestler2 + " defeated " + wrestler1 + " in a match by pinfall.\n"
               if titleop !="n":
                    matchre+= "Title: " + titleop +"\n"
+            elif winner == 3:
+                matchre = "The match between " +wrestler1 + " and " +wrestler2 + " ended in a no contest/disqualification\n"
 
             matchre += "Match Time: " +matchtime()
             matchra = determinerating(w1ov,w2ov)
@@ -154,7 +156,7 @@ try:
             t1ov = overnesseval(t1ov,team1)
             t2ov = overnesseval(t2ov,team2)
             titleop = input("If this is a title match enter the title's name, if not type a lowercase n: ")
-            winner = int(input("Choose a winner for the match:\n1:" +team1 + "\n2:" +team2+"\n"))
+            winner = int(input("Choose a winner for the match:\n1:" +team1 + "\n2:" +team2+"\n3:No Contest/DQ\n"))
             if winner == 1:
                 matchre = team1 + " defeated " + team2 + " in a match by pinfall.\n"
                 if titleop !="n":
@@ -163,7 +165,9 @@ try:
                 matchre = team2 + " defeated " + team1 + " in a match by pinfall.\n"
                 if titleop !="n":
                     matchre+= "Title: " + titleop +"\n"
-
+            elif winner == 3:
+                matchre = "The match between " +team1 + " and " +team2 + " ended in a no contest/disqualification\n"
+            
             matchre += "Match Time: " +matchtime()
             matchra = determinerating(t1ov,t2ov)
             segmentgrade = ratingtograde(matchra)
@@ -180,11 +184,7 @@ try:
             w2ov = int(input("Choose an option to represent " +wrestler2 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
             w1ov = overnesseval(w1ov,wrestler1)
             w2ov = overnesseval(w2ov,wrestler2)
-            winner = int(input("Choose a winner for the promo:\n1:" +wrestler1+ "\n2:" +wrestler2+"\n"))
-            if winner == 1:
-                matchre = promos(wrestler1,wrestler2)
-            elif winner == 2:
-                matchre = promos(wrestler2,wrestler1)
+            matchre = promos(wrestler1,wrestler2)
             matchra = determinerating(w1ov,w2ov)
             segmentgrade = ratingtograde(matchra)
             matchre += "\nSegment Rating: " + segmentgrade
