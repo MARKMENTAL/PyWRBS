@@ -1,11 +1,21 @@
 import random
 
+def getwinmethod(wm):
+    if wm == 1:
+        winmethod = "pinfall"
+    elif wm == 2:
+        winmethod = "submission"
+    elif wm == 3:
+        winmethod = "knockout"
+    return winmethod
+
 def tvratings(eventna,fed):
     rawstring = "raw"
     smackstring = "smackdown"
     rampagestring = "rampage"
     dynamitestring = "dynamite"
     darkstring = "dark"
+    nitrostring = "nitro"
 
     if rawstring in eventna.lower() and fed.lower() == "wwe":
         viewers = random.randint(1500000,3000000)
@@ -16,7 +26,7 @@ def tvratings(eventna,fed):
         viewers = random.randint(1000000,2800000)
         print("\nFOX TV Viewers: "+f'{viewers:,}')
 
-    elif rampagestring in eventna.lower() and fed.lower() == "aew":
+    elif rampagestring in eventna.lower() and fed.lower() == "aew" or fed.lower() == "wcw" and nitrostring in eventna.lower():
         viewers = random.randint(430000,1100000)  
         print("\nTNT TV Viewers: "+f'{viewers:,}')
 
@@ -27,6 +37,10 @@ def tvratings(eventna,fed):
     elif darkstring in eventna.lower() and fed.lower() == "aew":
         viewers = random.randint(300000, 1800000)
         print("\nYouTube Viewers: "+f'{viewers:,}')
+
+    else:
+        viewers = random.randint(1000,20000)
+        print("\nLive Event Attendance: " +f'{viewers:,}')
 
 def overnesseval(over, wrestler,matchty):
     if over == 1:
@@ -117,12 +131,12 @@ try:
 
     while i <= matches:
         print ("\nSegment " +str(i) +" of " +fed +" " +eventna);
-        print("Choose a match/segment type\n1:1v1 Match\n2:2v2 Match\n3:Promo Segment")
+        print("Choose a match/segment type\n1:Singles Match\n2:Tag Match\n3:Promo Segment")
         matchty = int(input())
         
         # normal match chosen
         if matchty == 1:
-            print("1v1 Singles Match")
+            print("Singles Match")
             wrestler1 = input("Enter the name of the first wrestler: ")
             wrestler2 = input("Enter the name of the second wrestler: ")
             w1ov = int(input("Choose an option to represent " +wrestler1 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
@@ -132,11 +146,15 @@ try:
             titleop = input("If this is a title match enter the title's name, if not type a lowercase n: ")
             winner = int(input("Choose a winner for the match:\n1:" +wrestler1+ "\n2:" +wrestler2+"\n3:No Contest/DQ\n"))
             if winner == 1:
-              matchre = wrestler1 + " defeated " + wrestler2 + " in a match by pinfall.\n"
+              winmethod = int(input("Choose a win method for the match:\n1:Pinfall\n2:Submission\n3:Knockout\n"))
+              winmethod = getwinmethod(winmethod)
+              matchre = wrestler1 + " defeated " + wrestler2 + " in a match by " +winmethod + ".\n"
               if titleop !="n":
                    matchre+= "Title: " + titleop +"\n"
             elif winner == 2:
-              matchre = wrestler2 + " defeated " + wrestler1 + " in a match by pinfall.\n"
+              winmethod = int(input("Choose a win method for the match:\n1:Pinfall\n2:Submission\n3:Knockout\n"))
+              winmethod = getwinmethod(winmethod)
+              matchre = wrestler2 + " defeated " + wrestler1 + " in a match by " + winmethod + ".\n"
               if titleop !="n":
                    matchre+= "Title: " + titleop +"\n"
             elif winner == 3:
@@ -151,7 +169,7 @@ try:
 
         # tag match chosen
         elif matchty == 2:
-            print("2v2 Tag Team Match")
+            print("Tag Team Match")
             team1 = input("Enter the name of the first team: ")
             team2 = input("Enter the name of the second team: ")
             t1ov = int(input("Choose an option to represent " +team1 +"'s overness:\n1:Main Eventer\n2:Midcarder\n3:Jobber\n"))
@@ -161,11 +179,15 @@ try:
             titleop = input("If this is a title match enter the title's name, if not type a lowercase n: ")
             winner = int(input("Choose a winner for the match:\n1:" +team1 + "\n2:" +team2+"\n3:No Contest/DQ\n"))
             if winner == 1:
-                matchre = team1 + " defeated " + team2 + " in a match by pinfall.\n"
+                winmethod = int(input("Choose a win method for the match:\n1:Pinfall\n2:Submission\n3:Knockout\n"))
+                winmethod = getwinmethod(winmethod)
+                matchre = team1 + " defeated " + team2 + " in a match by " + winmethod + ".\n"
                 if titleop !="n":
                     matchre+= "Title: " + titleop +"\n"
             elif winner == 2:
-                matchre = team2 + " defeated " + team1 + " in a match by pinfall.\n"
+                winmethod = int(input("Choose a win method for the match:\n1: Pinfall\n2: Submission\n3: Knockout\n"))
+                winmethod = getwinmethod(winmethod)
+                matchre = team2 + " defeated " + team1 + " in a match by " + winmethod + ".\n"
                 if titleop !="n":
                     matchre+= "Title: " + titleop +"\n"
             elif winner == 3:
