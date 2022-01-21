@@ -3,7 +3,7 @@ A free text-based wrestling event booking simulator.
 PyWRBS stands for Python Wrestling Booking Simulator.
 It is recommended to use the pylaunch.py script to start the sim.
 This was written with Python 3 and imports the random module.
-The launcher `pylaunch.py` best used on Linux or with WSL, unless your Python path variable is configured on Windows.
+The launcher `pylaunch.py` is best used on Linux or with WSL, unless your Python path variable is configured on Windows.
 
 # Features
 - Guided, PyWRBS has a step by step, easy to pick up and play command-line interface
