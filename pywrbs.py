@@ -1,5 +1,18 @@
 import random
 
+def writeresults(fed, eventna, finalgrade, results):
+    filename = input("Enter a name for a text file to save these results into (omit the .txt extension)\n")
+    resultfile = open(filename + ".txt","a")
+    resultfile.write("\n************************************\n"+fed+" " +eventna+" RESULTS\n************************************\n") 
+    i = 1
+
+    for result in results:                                                                                                   
+        resultfile.write("\nSegment " +str(i) + " Result:\n" +result +"\n")
+        i+=1
+
+    resultfile.write("\nThe final rating for " +fed +" " +eventna + " is: " +finalgrade + "\n")
+    print("The file '" + filename + ".txt'" + " has been saved to successfully.")
+
 def getwinmethod(wm):
     if wm == 1:
         winmethod = "pinfall"
@@ -238,6 +251,11 @@ try:
     finalgrade = ratingtograde(finalrating)
     print("The final rating for " +fed +" " +eventna + " is: " +finalgrade)
     tvratings(eventna,fed)
+    saveresults = input("Would you like to save the show results?(y/n)\n")
+
+    if saveresults.lower() == "y":
+        writeresults(fed, eventna, finalgrade, results)
+
 except ValueError:
     print("An error occurred, invalid input...\nPyWRBS shutting down...")
 except KeyboardInterrupt:

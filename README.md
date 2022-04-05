@@ -15,6 +15,7 @@ The launcher `pylaunch.py` is best used on Linux or with WSL, unless your Python
 - No contests and disqualification finishes
 - Specify whether a wrestler wins by pinfall, submission or knockout
 - Supports booking Tag Team and Singles matches as of right now
+- Allows for saving match results to a text file (under construction, attendance/views do not show as of right now)
 
 # Screenshot of Latest Version
 ![image](https://i.imgur.com/j9SIR2Y.png)
