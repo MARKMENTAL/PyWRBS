@@ -1,6 +1,6 @@
 import random
 
-def writeresults(fed, eventna, finalgrade, results):
+def writeresults(fed, eventna, finalgrade, results, viewreport):
     filename = input("Enter a name for a text file to save these results into (omit the .txt extension)\n")
     resultfile = open(filename + ".txt","a")
     resultfile.write("\n************************************\n"+fed+" " +eventna+" RESULTS\n************************************\n") 
@@ -11,6 +11,7 @@ def writeresults(fed, eventna, finalgrade, results):
         i+=1
 
     resultfile.write("\nThe final rating for " +fed +" " +eventna + " is: " +finalgrade + "\n")
+    resultfile.write(viewreport)
     print("The file '" + filename + ".txt'" + " has been saved to successfully.")
 
 def getwinmethod(wm):
@@ -33,27 +34,29 @@ def tvratings(eventna,fed):
     if rawstring in eventna.lower() and fed.lower() == "wwe":
         viewers = random.randint(1500000,3000000)
         # using f strings to format the viewer number with commas
-        print("\nUSA Network TV Viewers: " +f'{viewers:,}')
+        viewreport = "\nUSA Network TV Viewers: " +f'{viewers:,}'
     
     elif smackstring in eventna.lower() and fed.lower() == "wwe":
         viewers = random.randint(1000000,2800000)
-        print("\nFOX TV Viewers: "+f'{viewers:,}')
+        viewreport = "\nFOX TV Viewers: "+f'{viewers:,}'
 
     elif rampagestring in eventna.lower() and fed.lower() == "aew" or fed.lower() == "wcw" and nitrostring in eventna.lower():
         viewers = random.randint(430000,1100000)  
-        print("\nTNT TV Viewers: "+f'{viewers:,}')
+        viewreport = "\nTNT TV Viewers: "+f'{viewers:,}'
 
     elif dynamitestring in eventna.lower() and fed.lower() == "aew":
         viewers = random.randint(500000,1400000)
-        print("\nTBS TV Viewers: "+f'{viewers:,}')
+        viewreport = "\nTBS TV Viewers: "+f'{viewers:,}'
 
     elif darkstring in eventna.lower() and fed.lower() == "aew":
         viewers = random.randint(300000, 1800000)
-        print("\nYouTube Viewers: "+f'{viewers:,}')
+        viewreport = "\nYouTube Viewers: "+f'{viewers:,}'
 
     else:
         viewers = random.randint(1000,20000)
-        print("\nLive Event Attendance: " +f'{viewers:,}')
+        viewreport = "\nLive Event Attendance: " +f'{viewers:,}'
+    
+    return viewreport
 
 def overnesseval(over, wrestler,matchty):
     if over == 1:
@@ -250,11 +253,12 @@ try:
     finalrating = int(finalrating / matches)
     finalgrade = ratingtograde(finalrating)
     print("The final rating for " +fed +" " +eventna + " is: " +finalgrade)
-    tvratings(eventna,fed)
+    viewreport = tvratings(eventna,fed)
+    print(viewreport)
     saveresults = input("Would you like to save the show results?(y/n)\n")
 
     if saveresults.lower() == "y":
-        writeresults(fed, eventna, finalgrade, results)
+        writeresults(fed, eventna, finalgrade, results, viewreport)
 
 except ValueError:
     print("An error occurred, invalid input...\nPyWRBS shutting down...")
